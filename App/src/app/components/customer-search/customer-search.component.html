@@ -1,0 +1,24 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="form">
+  <mat-form-field>
+    <mat-label>ת.ז</mat-label>
+    <input matInput maxlength="9" formControlName="id" />
+    <mat-error
+      *ngIf="idControl?.errors"
+      >{{idControl?.errors?.['required'] ? 'שדה חובה' : (idControl?.errors?.['invalid'])}}</mat-error
+    >
+  </mat-form-field>
+
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    [disabled]="!searchForm.valid"
+  >
+    חפש
+  </button>
+</form>
+
+<mat-error
+  *ngIf="searchForm?.errors"
+  >{{searchForm.errors?.['notFound'] || searchForm.errors?.['internalError']}}</mat-error
+>

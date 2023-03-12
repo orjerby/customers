@@ -1,0 +1,50 @@
+<div>
+  <h1 mat-dialog-title>{{ contract.name }}</h1>
+  <div mat-dialog-content>
+    <p>מספר מנוי: {{ contract.id }}</p>
+    <p>סוג מנוי: {{ getContractTypeString(contract.type) }}</p>
+
+    <mat-form-field appearance="fill">
+      <mat-label>חבילות</mat-label>
+      <mat-select
+        defaultTabIndex="0"
+        (selectionChange)="onPackageChange($event)"
+      >
+        <mat-option
+          *ngFor="let package of contract.packages; let i = index"
+          value="{{ i }}"
+          >{{ package.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="package">
+      <div>שם חבילה: {{ package.name }}</div>
+      <div>סוג חבילה: {{ getPackageTypeString(package.type) }}</div>
+      <div>כמות: {{ package.amount }}</div>
+      <div>שומש: {{ package.used }}</div>
+
+      <div style="width: 300px; height: 300px">
+        <canvas
+          baseChart
+          class="chart"
+          [data]="pieChartData"
+          [type]="pieChartType"
+          [options]="pieChartOptions"
+        >
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      mat-raised-button
+      color="primary"
+    >
+      סגור
+    </button>
+  </div>
+</div>

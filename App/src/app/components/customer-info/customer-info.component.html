@@ -1,0 +1,81 @@
+<div class="container" *ngIf="customer">
+  <div>
+    <h1>{{ customer.firstName }} {{ customer.lastName }}</h1>
+    <div>ת.ז: {{ customer.id }}</div>
+
+    <div *ngIf="customer.contracts">
+      <h2>רשימת מנויים</h2>
+
+      <mat-list>
+        <mat-list-item *ngFor="let contract of customer.contracts">
+          <button
+            mat-button
+            mat-raised-button
+            color="accent"
+            (click)="openInfo(contract)"
+          >
+            {{ contract.name }}
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    (click)="enableAddressForm()"
+    [disabled]="editMode"
+  >
+    עריכת כתובת
+  </button>
+
+  <form [formGroup]="addressUpdateForm" (ngSubmit)="onSubmit()" class="form">
+    <mat-form-field>
+      <mat-label>עיר</mat-label>
+      <input matInput [matAutocomplete]="city" formControlName="city" />
+      <mat-autocomplete autoActiveFirstOption #city="matAutocomplete">
+        <mat-option
+          *ngFor="let option of cityFilteredOptions | async"
+          [value]="option"
+        >
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>רחוב</mat-label>
+      <input matInput [matAutocomplete]="street" formControlName="street" />
+      <mat-autocomplete autoActiveFirstOption #street="matAutocomplete">
+        <mat-option
+          *ngFor="let option of streetFilteredOptions | async"
+          [value]="option"
+        >
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>מספר בית</mat-label>
+      <input matInput formControlName="houseNumber" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>מיקוד</mat-label>
+      <input matInput formControlName="postalCode" />
+    </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!editMode || !addressUpdateForm.valid"
+    >
+      שמור
+    </button>
+  </form>
+
+  <mat-error
+    *ngIf="addressUpdateForm?.errors"
+    >{{ addressUpdateForm.errors?.['internalError'] }}</mat-error
+  >
+</div>

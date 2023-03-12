@@ -1,0 +1,47 @@
+# ASP.NET Core files
+bin/
+obj/
+*.log
+*.vs/
+*.user
+*.suo
+*.cache
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# NuGet
+*.nuget.props
+*.nuget.targets
+Packages/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/project.lock.json
+**/project.fragment.lock.json
+**/*.nuget.props
+**/*.nuget.targets
+
+# Other
+*.Cache
+*.csproj.user
+.vscode/
+.DS_Store
+*.bak
+*.config
+*.pidb
+*.userprefs
+*.dbmdl
+*.jfm
+*.sdf
+*.mdf
+*.ldf

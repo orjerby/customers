@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Switch all elements to RTL */
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+/* Set text alignment to right for LTR languages */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Set text alignment to left for RTL languages */
+[dir="ltr"] {
+  text-align: left;
+}

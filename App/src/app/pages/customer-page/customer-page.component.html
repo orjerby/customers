@@ -1,0 +1,5 @@
+<div class="container" *ngIf="customer">
+  <a [routerLink]="['/']">בחזרה לדף חיפוש</a>
+
+  <app-customer-info [customer]="customer"></app-customer-info>
+</div>
